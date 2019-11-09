@@ -1,0 +1,14 @@
+html {
+    font-family: "Rubik", sans-serif;
+    font-size: 14pt;
+    line-height: 1.6;
+
+    /* https://pixabay.com/photos/ship-boat-lake-sailing-boat-italy-952292/ */
+    background-color: black;
+    background-image: url(img/background.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
+    --content-padding: 1rem;
+}
