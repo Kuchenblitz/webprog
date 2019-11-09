@@ -1,3 +1,13 @@
-div{
-    margin-bottom: 50px;
+.border{
+    display: flex;
+    flex-wrap: wrap;
 }
+.image, .imageText{
+    margin: 5px;
+    text-align: left;
+    display: inline-block;
+}
+h3{
+    color: darkslateblue;
+}
+

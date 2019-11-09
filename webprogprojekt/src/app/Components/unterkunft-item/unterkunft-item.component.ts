@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Unterkunft } from 'src/app/models/Unterkunft';
+import { HostListener} from "@angular/core";
 
 @Component({
   selector: 'app-unterkunft-item',
@@ -13,5 +14,8 @@ export class UnterkunftItemComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
+  @HostListener("click") onClick(){
+    console.log("geclickt")
+  }
 }
