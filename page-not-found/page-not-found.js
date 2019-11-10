@@ -1,9 +1,5 @@
 "use strict";
 
-/**
- * Klasse PageNotFound: Stellt eine Defaultseite zur Verfügung, die immer
- * dann angezeigt wird, wenn der Anwender eine unbekannte URL aufruft.
- */
 class PageNotFound {
     /**
      * Konstruktor
