@@ -227,7 +227,7 @@ class App {
 
 }
 
-/** Firebase Shenanigans */
+/** Firebase Shenanigans 
 
 document.addEventListener("DOMContentLoaded", event => {
     console.log("Event is executed");
@@ -242,4 +242,4 @@ document.addEventListener("DOMContentLoaded", event => {
               const data = doc.data();
               console.log( data.name)
           })
-});
+});*/
