@@ -47,8 +47,6 @@ class PageOverview {
 
         const collection = db.collection('Events');
         
-        let documents = [];
-
         // Iterate through all the Documents in the Collection
         collection.onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {

@@ -17,8 +17,8 @@ class PageAdmin {
      */
     async show() {
         // Anzuzeigenden Seiteninhalt nachladen
-        let html = await fetch("page-overview/page-overview.html");
-        let css = await fetch("page-overview/page-overview.css");
+        let html = await fetch("page-admin/page-admin.html");
+        let css = await fetch("page-admin/page-admin.css");
 
         if (html.ok && css.ok) {
             html = await html.text();
@@ -32,44 +32,15 @@ class PageAdmin {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        this._render_activities(pageDom)
-
         this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
+        this._app.setPageContent(pageDom.querySelector("main"));
         
     }
 
 
-    _render_activities(pageDom){
-        let mainElement = pageDom.querySelector("main");
-        let templateElement = pageDom.querySelector("#template-tile"); 
-        
-        const app = firebase.app();
-
-        const db = firebase.firestore();
-
-        const collection = db.collection('Events');
-        
-        let documents = [];
-
-        // Iterate through all the Documents in the Collection
-        collection.onSnapshot((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                let data = doc.data();
-                let html = templateElement.innerHTML;
-                //Fill html template and add it to <main>
-                html = html.replace("{HREF}", `#/Trip/${data.href}`);
-                html = html.replace("{IMG}", data.img_path);
-                html = html.replace("{NAME}", data.name);
-                html = html.replace("{ALT}", data.description);
-                let mainElement = pageDom.querySelector("main");
-                mainElement.innerHTML += html;
-                
-            });
-            this._app.setPageContent(pageDom.querySelector("main"));
-        })
-    }
+    
        
     /**
      * Hilfsmethode, welche den HTML-Code zur Darstellung der Kacheln auf
