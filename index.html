@@ -11,11 +11,28 @@
     <script src="app.js"></script>
     <link rel="stylesheet" href="app.css" />
 
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+
+    <!-- Used Firebase Products -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
+
     <!-- Klassen für die einzelnen App-Seiten -->
     <script src="page-overview/page-overview.js"></script>
     <script src="page-trip/page-trip.js"></script>
     <script src="page-not-found/page-not-found.js"></script>
     <script src="page-admin/page-admin.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- scripts -->
+    <script src="database.js"></script>
+
 
     <!-- Possible Icon Fonts like fontello -->
     <!-- <link rel="stylesheet" href="fontello/css/fontello.css" /> -->
@@ -42,6 +59,8 @@
 
             let app = new App("FunForFriends", pages);
             app.run();
+
+            
         });
     </script>
 
@@ -100,26 +119,8 @@
         Inhalt des Hauptbereichs
     </main>
     
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
 
-    <!-- Used Firebase Products -->
-    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-          apiKey: "AIzaSyBApPTt_9FubCAXAF9MwIs2JzUZ7T5o3Ow",
-          authDomain: "freizeitverwaltung-554f8.firebaseapp.com",
-          databaseURL: "https://freizeitverwaltung-554f8.firebaseio.com",
-          projectId: "freizeitverwaltung-554f8",
-          storageBucket: "freizeitverwaltung-554f8.appspot.com",
-          messagingSenderId: "455334994107",
-          appId: "1:455334994107:web:656046e1918b3671de499e"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-      </script>
 </body>
 
 </html>

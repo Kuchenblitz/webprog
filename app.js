@@ -31,7 +31,7 @@ class App {
         this._title = title;
         this._pages = pages;
         this._currentPageObject = null;
-
+        this.database = new Database();
     }
 
     /**
