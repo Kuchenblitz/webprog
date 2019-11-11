@@ -37,6 +37,7 @@ class PageOverview {
         this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
+        console.log(window.location.href);
         
     }
 
