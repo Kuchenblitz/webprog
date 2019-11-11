@@ -32,7 +32,7 @@ class PageOverview {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        this._render_activities(pageDom, html)
+        this._render_activities(pageDom)
 
         this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
@@ -41,7 +41,7 @@ class PageOverview {
     }
 
 
-    _render_activities(pageDom, html){
+    _render_activities(pageDom){
         let mainElement = pageDom.querySelector("main");
         console.log(mainElement);
         let templateElement = pageDom.querySelector("#template-tile");
@@ -54,19 +54,23 @@ class PageOverview {
         
         let documents = [];
 
+        // Iterate through all the Documents in the Collection
         collection.onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 let data = doc.data();
                 let html = templateElement.innerHTML;
-                html = html.replace("{HREF}", `#/Detail/${data.href}`);
+                //Fill html template and add it to <main>
+                html = html.replace("{HREF}", `#/Trip/${data.href}`);
                 html = html.replace("{IMG}", data.img_path);
                 html = html.replace("{NAME}", data.name);
                 html = html.replace("{ALT}", data.description);
+                let mainElement = pageDom.querySelector("main");
                 mainElement.innerHTML += html;
-                console.log(mainElement.innerHTML);
                 
-                this._app.setPageContent(pageDom.querySelector("main"));
             });
+            console.log(mainElement.innerHTML);
+                
+            this._app.setPageContent(pageDom.querySelector("main"));
         })
     }
        
