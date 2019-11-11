@@ -10,12 +10,18 @@ class PageTrip {
      */
     constructor(app) {
         this._app = app;
+        this.activityId = -1;
+        this._data = null;
     }
 
-    /**
-     * Seite anzeigen. Wird von der App-Klasse aufgerufen.
-     */
-    async show() {
+
+    async show(matches) {
+
+        //Bestimmung der Id des anzuzeigenden Elements
+        let url = window.location.href;
+        let res = url.split("/");
+        this.activityId = res[res.length-1];
+
         // Anzuzeigenden Seiteninhalt nachladen
         let html = await fetch("page-trip/page-trip.html");
         let css = await fetch("page-trip/page-trip.css");
@@ -32,12 +38,10 @@ class PageTrip {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        this._renderBoatTiles(pageDom);
+        this._process(pageDom);
 
-        this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
-        this._app.setPageContent(pageDom.querySelector("main"));
     }
 
     /**
@@ -47,17 +51,22 @@ class PageTrip {
      * @param {HTMLElement} pageDom Wurzelelement der eingelesenen HTML-Datei
      * mit den HTML-Templates dieser Seite.
      */
-    _renderBoatTiles(pageDom) {
+    _process(pageDom) {
         let mainElement = pageDom.querySelector("main");
         let templateElement = pageDom.querySelector("#template-tile");
 
-        this._app.database.getAllRecords().forEach(boat => {
+        let Event = db.collection('Events').doc(this.activityId);
+        
+        Event.get().then(doc => {
+            this._data = doc.data();
             let html = templateElement.innerHTML;
-            html = html.replace("{HREF}", `#/Detail/${boat.id}`);
-            html = html.replace("{IMG}", boat.img);
-            html = html.replace("{NAME}", boat.name);
-
+           
+            html = html.replace("{NAME}", this._data.description);
+            
             mainElement.innerHTML += html;
+            this._app.setPageContent(pageDom.querySelector("main"));
+            this._app.setPageTitle(this._data.description)
         });
+
     }
 }

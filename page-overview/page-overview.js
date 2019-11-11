@@ -44,17 +44,10 @@ class PageOverview {
 
     _render_activities(pageDom){
         let mainElement = pageDom.querySelector("main");
-        console.log(mainElement);
         let templateElement = pageDom.querySelector("#template-tile");
-        
-        const app = firebase.app();
-
-        const db = firebase.firestore();
 
         const collection = db.collection('Events');
         
-        let documents = [];
-
         // Iterate through all the Documents in the Collection
         collection.onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -69,8 +62,6 @@ class PageOverview {
                 mainElement.innerHTML += html;
                 
             });
-            console.log(mainElement.innerHTML);
-                
             this._app.setPageContent(pageDom.querySelector("main"));
         })
     }

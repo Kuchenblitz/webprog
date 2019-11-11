@@ -32,7 +32,7 @@
                 klass: PageTrip,
             },
             {
-                url: "^/Admin/(.*)$",
+                url: "^/Admin$",
                 klass: PageAdmin,
             },
             {
@@ -118,6 +118,7 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
       </script>
 </body>
 
