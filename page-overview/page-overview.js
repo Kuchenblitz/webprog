@@ -32,17 +32,18 @@ class PageOverview {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        let main = this._render_activities(pageDom)
+        this._render_activities(pageDom)
 
         this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
-        this._app.setPageContent(main);
+        this._app.setPageContent(pageDom.querySelector("main"));
     }
 
 
     _render_activities(pageDom){
         let mainElement = pageDom.querySelector("main");
+        console.log(mainElement);
         let templateElement = pageDom.querySelector("#template-tile");
         
         const app = firebase.app();
@@ -64,7 +65,6 @@ class PageOverview {
             html = html.replace("{ALT}", data.description);
             mainElement.innerHTML += html;
             console.log(mainElement);  
-            return mainElement;
         });
         
     }
