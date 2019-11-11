@@ -32,16 +32,16 @@ class PageOverview {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        this._render_activities(pageDom)
+        this._render_activities(pageDom, html)
 
         this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
-        this._app.setPageContent(pageDom.querySelector("main"));
+        
     }
 
 
-    _render_activities(pageDom){
+    _render_activities(pageDom, html){
         let mainElement = pageDom.querySelector("main");
         console.log(mainElement);
         let templateElement = pageDom.querySelector("#template-tile");
@@ -50,32 +50,26 @@ class PageOverview {
 
         const db = firebase.firestore();
 
-        const Events = db.collection('Events');
+        const collection = db.collection('Events');
         
-        let size = this.get_Events_size(Events);
-        let Event = Events.doc('01');
-            Event.get()
-                 .then(doc => {
-                        let data = doc.data();
-                    
-            let html = templateElement.innerHTML;
-            html = html.replace("{HREF}", `#/Detail/${data.href}`);
-            html = html.replace("{IMG}", data.img_path);
-            html = html.replace("{NAME}", data.name);
-            html = html.replace("{ALT}", data.description);
-            mainElement.innerHTML += html;
-            console.log(mainElement);  
-        });
-        
+        let documents = [];
+
+        collection.onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                let data = doc.data();
+                let html = templateElement.innerHTML;
+                html = html.replace("{HREF}", `#/Detail/${data.href}`);
+                html = html.replace("{IMG}", data.img_path);
+                html = html.replace("{NAME}", data.name);
+                html = html.replace("{ALT}", data.description);
+                mainElement.innerHTML += html;
+                console.log(mainElement.innerHTML);
+                
+                this._app.setPageContent(pageDom.querySelector("main"));
+            });
+        })
     }
-
-    get_Events_size(Events){
-        Events.get().then(snap => {
-            let size = snap.size
-        return size;
-    });
-}
-
+       
     /**
      * Hilfsmethode, welche den HTML-Code zur Darstellung der Kacheln auf
      * der Startseite erzeugt.
