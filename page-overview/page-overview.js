@@ -43,12 +43,7 @@ class PageOverview {
 
     _render_activities(pageDom){
         let mainElement = pageDom.querySelector("main");
-        console.log(mainElement);
         let templateElement = pageDom.querySelector("#template-tile");
-        
-        const app = firebase.app();
-
-        const db = firebase.firestore();
 
         const collection = db.collection('Events');
         
@@ -68,8 +63,6 @@ class PageOverview {
                 mainElement.innerHTML += html;
                 
             });
-            console.log(mainElement.innerHTML);
-                
             this._app.setPageContent(pageDom.querySelector("main"));
         })
     }
