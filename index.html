@@ -28,7 +28,7 @@
                 klass: PageOverview,
             },
             {
-                url: "^/Detail/(.*)$",
+                url: "^/Trip/(.*)$",
                 klass: PageTrip,
             },
             {
@@ -118,6 +118,7 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
       </script>
 </body>
 
