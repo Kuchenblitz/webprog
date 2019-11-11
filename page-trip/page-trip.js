@@ -14,7 +14,7 @@ class PageTrip {
         this._data = null;
     }
 
-
+    
     async show(matches) {
 
         //Bestimmung der Id des anzuzeigenden Elements
@@ -36,37 +36,52 @@ class PageTrip {
 
         // Seite zur Anzeige bringen
         let pageDom = document.createElement("div");
+        
         pageDom.innerHTML = html;
-
-        this._process(pageDom);
-
+        this._getData(pageDom);
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
+
+        console.log(pageDom.querySelector("#knopf"));
+        pageDom.querySelector("#knopf").onclick(this._onTeilnahmeClicked());
+        
+    
     }
 
     /**
-     * Hilfsmethode, welche den HTML-Code zur Darstellung der Kacheln auf
-     * der Startseite erzeugt.
-     *
-     * @param {HTMLElement} pageDom Wurzelelement der eingelesenen HTML-Datei
-     * mit den HTML-Templates dieser Seite.
+     * 
+     * Funktion, die die benötigten Daten aus der Datenbank holt und in den DOM-Baum anhängt 
+     * @param {*} pageDom der div-Container, der die Elemente beinhalten soll
      */
-    _process(pageDom) {
+    _getData(pageDom) {
         let mainElement = pageDom.querySelector("main");
         let templateElement = pageDom.querySelector("#template-tile");
-
-        let Event = db.collection('Events').doc(this.activityId);
+        let headerElement = pageDom.querySelector("#header-div");
         
+        //Abfrage der benötigten Daten für das asugewählte Element, sowie einsetzen dieser an den vorgesehenen Stellen
+        let Event = db.collection('Events').doc(this.activityId);
         Event.get().then(doc => {
             this._data = doc.data();
             let html = templateElement.innerHTML;
            
-            html = html.replace("{NAME}", this._data.description);
-            
+            html = html.replace("{DESCRIPTION}", this._data.description);
+
+
+            document.getElementById("header-div").innerHTML = "<h1>"+this._data.name+"</h1>";
+            //html = html.replace("{NAME}", this._data.description);
+
             mainElement.innerHTML += html;
             this._app.setPageContent(pageDom.querySelector("main"));
-            this._app.setPageTitle(this._data.description)
+            this._app.setPageTitle("Trip: "+this._data.name)
         });
-
     }
+
+    _onTeilnahmeClicked(){
+        alert("echo");
+    }
+    
+
+
+
 }
+
