@@ -11,7 +11,7 @@ class PageTrip {
     constructor(app) {
         this._app = app;
         this.activityId = -1;
-        this.data = null;
+        this._data = null;
     }
 
 
@@ -38,12 +38,10 @@ class PageTrip {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        this._renderActivity(pageDom);
+        this._process(pageDom);
 
-        this._app.setPageTitle("Startseite");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
-        this._app.setPageContent(pageDom.querySelector("main"));
     }
 
     /**
@@ -53,17 +51,22 @@ class PageTrip {
      * @param {HTMLElement} pageDom Wurzelelement der eingelesenen HTML-Datei
      * mit den HTML-Templates dieser Seite.
      */
-    _renderActivity(pageDom) {
+    _process(pageDom) {
         let mainElement = pageDom.querySelector("main");
         let templateElement = pageDom.querySelector("#template-tile");
 
-        const db = firebase.firestore();
-        const Events = db.collection('Events');
-        let Event = Events.doc(this.activityId);
+        let Event = db.collection('Events').doc(this.activityId);
+        
         Event.get().then(doc => {
-            let data = doc.data();
+            this._data = doc.data();
+            let html = templateElement.innerHTML;
+           
+            html = html.replace("{NAME}", this._data.description);
+            
+            mainElement.innerHTML += html;
+            this._app.setPageContent(pageDom.querySelector("main"));
+            this._app.setPageTitle(this._data.description)
         });
-        let html = templateElement.innerHTML;
-        html.replace("{TEST}", this.data.description);
+
     }
 }
