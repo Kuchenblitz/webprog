@@ -51,7 +51,8 @@ class PageTrip {
         let templateElement = pageDom.querySelector("#template-tile");
         
         //Abfrage der benötigten Daten für das asugewählte Element, sowie einsetzen dieser an den vorgesehenen Stellen
-        let Event = db.collection('Events').doc(this.activityId);
+        let id = this.activityId;
+        let Event = db.collection('Events').doc(id);
         Event.get().then(doc => {
             this._data = doc.data();
             let tempHtml = templateElement.innerHTML;
@@ -75,17 +76,29 @@ class PageTrip {
             mainElement.innerHTML += tempHtml;
             mainElement.innerHTML += "<button id='superbutton' class='btn btn-green lower-right'>Klingt nach Spaß!</button>";
             this._app.setPageContent(pageDom.querySelector("main"));
-            document.getElementById("superbutton").addEventListener("click", this._onTeilnahmeClicked);
+            document.getElementById("superbutton").addEventListener("click", function(){
+                let teilnehmer = prompt("Please enter your name");
+                console.log(id);
+                console.log(teilnehmer);
+
+                db.collection("Teilnehmer").doc(teilnehmer).set({
+                    name: teilnehmer,
+                    AktivitätsId: id,
+                    teilnehmerId: "13"
+                })
+                .then(function() {
+                    console.log("Document successfully written!");
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                });
+            });
             this._app.setPageTitle("Trip: "+this._data.name)
             
             //Hintergrund dem Event anpassen
             document.body.style.background = "url(" + this._data.img_path + ")";
             document.body.style.backgroundSize = "cover";
         });
-    }
-
-    _onTeilnahmeClicked(){
-        alert("echo");
     }
     
 
