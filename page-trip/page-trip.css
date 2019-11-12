@@ -9,13 +9,9 @@
     margin-left: 75%;
 }
 
-.list-group, .list-group-item{
-    background: rgba(255,255,255,0);
-}
-
-.with-bg{
+.rounded{
     background: rgba(255,255,255,0.65);
     padding: 15px;
-    margin: 0;
+    margin-right: 500px;
 }
 
