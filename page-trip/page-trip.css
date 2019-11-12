@@ -10,6 +10,12 @@
     margin-top: 10%;
 }
 
-.list-group{
-    flex-wrap: wrap;
+.list-group, .list-group-item{
+    background: rgba(255,255,255,0);
+}
+
+.with-bg{
+    background: rgba(255,255,255,0.65);
+    padding: 15px;
+    margin: 0;
 }

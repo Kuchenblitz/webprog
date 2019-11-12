@@ -1,54 +1,31 @@
 <header>
-   <div id="header-div">
-   </div>
+   <div id="header-div"></div>
 </header>
 
-<main></main>
+<main>
+</main>
 
 <div id="template-tile">
+    <div class="with-bg">
     <div class="main-area">
-        <p>{DESCRIPTION}</p>
-        
+       <p>{DESCRIPTION}</p>
     </div>
     <div class="extra_area">
-        <ul class="list-group">
-            <li class="list-group-item">Abenteuer: {ABENTEUER-RATING}</li>
-            <li class="list-group-item">Entspannung: {RELAX-RATING}</li>
-            <li class="list-group-item">Natur: {NATURE-RATING}</li>
-            <li class="list-group-item">Schwierigkeitsgrad: {DANGER-RATING}</li>
+        <ul class="list-unstyled">
+            <h5>
+                <li>Abenteuer: {ABENTEUER-RATING}</li>
+                <li>Entspannung: {RELAX-RATING}</li>
+                <li>Natur: {NATURE-RATING}</li>
+                <li>Schwierigkeitsgrad: {DANGER-RATING}</li>
+            </h5>
         </ul>
         <div class="lower-right">
             <p class>Kosten: {KOSTEN}</p>
-            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#myModal">
-                    Klingt nach Spaß!
-            </button>
         </div>
-            
-                <!-- The Modal -->
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Teilnahme anmelden</h4>
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                    </div>
-                    
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <input type="text" placeholder="Name">
-                    </div>
-                    
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
+                  
     <div>
-        Für mehr Infos rufen sie {NUMMER} an
+            Für mehr Infos rufen sie {NUMMER} an
     </div>
 </div>

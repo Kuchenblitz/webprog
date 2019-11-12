@@ -38,7 +38,7 @@ class PageTrip {
         this._getData(pageDom);
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
-        
+
     }
     
     /**
@@ -64,22 +64,23 @@ class PageTrip {
                 tempHtml = tempHtml.replace("Für mehr Infos rufen sie {NUMMER} an", "");
             }
 
-            tempHtml = tempHtml.replace("{ABENTEUER-RATING}", this._data.abenteuer != null ? this._data.cost : "unbekannt");
-            tempHtml = tempHtml.replace("{RELAX-RATING}", this._data.relax != null ? this._data.cost : "unbekannt");
-            tempHtml = tempHtml.replace("{NATURE-RATING}", this._data.nature != null ? this._data.cost : "unbekannt");
-            tempHtml = tempHtml.replace("{DANGER-RATING}", this._data.danger != null ? this._data.cost : "unbekannt");
+            tempHtml = tempHtml.replace("{ABENTEUER-RATING}", this._data.abenteuer != null ? this._data.abenteuer : "unbekannt");
+            tempHtml = tempHtml.replace("{RELAX-RATING}", this._data.relax != null ? this._data.relax : "unbekannt");
+            tempHtml = tempHtml.replace("{NATURE-RATING}", this._data.nature != null ? this._data.nature : "unbekannt");
+            tempHtml = tempHtml.replace("{DANGER-RATING}", this._data.danger != null ? this._data.danger : "unbekannt");
             
             document.getElementById("header-div").innerHTML = "<h1>"+this._data.name+"</h1>";
             //tempHtml = tempHtml.replace("{NAME}", this._data.description);
             
             mainElement.innerHTML += tempHtml;
+            mainElement.innerHTML += "<button id='superbutton' class='btn btn-green'>test</button>";
             this._app.setPageContent(pageDom.querySelector("main"));
+            document.getElementById("superbutton").addEventListener("click", this._onTeilnahmeClicked);
             this._app.setPageTitle("Trip: "+this._data.name)
             
             //Hintergrund dem Event anpassen
             document.body.style.background = "url(" + this._data.img_path + ")";
             document.body.style.backgroundSize = "cover";
-
         });
     }
 
