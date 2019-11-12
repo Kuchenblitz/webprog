@@ -56,10 +56,10 @@ class PageAdmin {
              description: form.elements["trip_description"].value,
              href: form.elements["trip_href"].value,
              id: form.elements["trip_id"].value,
-             img_path: form.elements["trip_img_path"].value,
+             //img_path: form.elements["trip_img_path"].value,
             })
             .then(function() {
-                alert("Document successfully written!");
+                window.location.reload(true);
             })
             .catch(function(error) {
                 alert("Error writing document: ", error);
@@ -90,10 +90,11 @@ class PageAdmin {
                         }).catch(function(error){
                             console.error("Das war wohl nichts");
                         });
-                        alert("Item wird gelöscht");
+                        alert("Item wurde gelöscht");
                     }else{
                         alert("Item wird nicht gelöscht");
                     }
+                                      
                 });
             }
         })
