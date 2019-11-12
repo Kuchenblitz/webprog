@@ -1,11 +1,15 @@
 .row {
     display: flex;
-  }
+}
   
-  .column {
+.column {
     flex: 50%;
-  }
+}
 
-  #new_trip{
-      margin-right: 50px;
-  }
+#new_trip{
+    margin-right: 50px;
+}
+
+#submit_button{
+    margin-left: 10px;
+}

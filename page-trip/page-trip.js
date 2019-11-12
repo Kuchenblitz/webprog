@@ -74,24 +74,25 @@ class PageTrip {
             //tempHtml = tempHtml.replace("{NAME}", this._data.description);
             
             mainElement.innerHTML += tempHtml;
-            mainElement.innerHTML += "<button id='superbutton' class='btn btn-green lower-right'>Klingt nach Spaß!</button>";
             this._app.setPageContent(pageDom.querySelector("main"));
-            document.getElementById("superbutton").addEventListener("click", function(){
-                let teilnehmer = prompt("Please enter your name");
-                console.log(id);
-                console.log(teilnehmer);
 
-                db.collection("Teilnehmer").doc(teilnehmer).set({
-                    name: teilnehmer,
-                    AktivitätsId: id,
-                    teilnehmerId: "13"
-                })
-                .then(function() {
-                    console.log("Document successfully written!");
-                })
-                .catch(function(error) {
-                    console.error("Error writing document: ", error);
-                });
+            //teilnahme knopf einfügen (Muss hier gemacht werden, da aufgrund des dynamischen Aufbaus er ansonsten nicht gefunden wird von getElementById())
+            document.getElementById("button_here").innerHTML += "<button id='teilnehmen_button' class='btn btn-green'>Klingt nach Spaß!</button>";
+            document.getElementById("teilnehmen_button").addEventListener("click", function(){
+                let teilnehmer = prompt("Please enter your name");
+                if(teilnehmer != null){
+                    db.collection("Teilnehmer").doc(teilnehmer).set({
+                        name: teilnehmer,
+                        AktivitätsId: id,
+                        teilnehmerId: "13"
+                    })
+                    .then(function() {
+                        console.log("Document successfully written!");
+                    })
+                    .catch(function(error) {
+                        console.error("Error writing document: ", error);
+                    });
+                }
             });
             this._app.setPageTitle("Trip: "+this._data.name)
             

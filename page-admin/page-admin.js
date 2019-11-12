@@ -30,12 +30,20 @@ class PageAdmin {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
+        this._showEvents(pageDom);
+
         this._app.setPageTitle("Admin");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
         
         document.body.style.background = "transparent";
+
+        //Einfügen der Knöpfe zum bestätigen und verwerfen (Muss hier gemacht werden, da aufgrund des dynamischen Aufbaus er ansonsten nicht gefunden wird von getElementById())
+        document.getElementById("reset_and_submit").innerHTML += 
+        '<button type="reset" class="btn btn-primary">Reset</button>' +
+        '<button type="submit" class="btn btn-primary" id="submit_button">Submit</button>'
+
         let submit_button = document.getElementById('submit_button')
         submit_button.addEventListener("click", this._send_form);
     }
@@ -56,6 +64,20 @@ class PageAdmin {
             .catch(function(error) {
                 alert("Error writing document: ", error);
             });
+    }
+
+    _showEvents(pageDom){
+        let deletingElement = pageDom.querySelector("#deleting");
+        console.log(deletingElement);
+        const collection = db.collection('Events');
+
+        //Iterate through alle Documents in Collection
+        collection.onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                let data = doc.data();
+                deletingElement.innerHTML += "<li>" + data.name + "</li>";
+            });
+        })
     }
     
     
