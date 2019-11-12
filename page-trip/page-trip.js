@@ -57,13 +57,17 @@ class PageTrip {
             let tempHtml = templateElement.innerHTML;
             
             tempHtml = tempHtml.replace("{DESCRIPTION}", this._data.description);
+            tempHtml = tempHtml.replace("{KOSTEN}", this._data.cost != null ? this._data.cost : "unbekannt");
             if(this._data.tel != null){
                 tempHtml = tempHtml.replace("{NUMMER}", this._data.tel);
             }else{
                 tempHtml = tempHtml.replace("Für mehr Infos rufen sie {NUMMER} an", "");
             }
 
-            //tempHtml = tempHtml.replace("{ABENTEUER-RATING}", "2");
+            tempHtml = tempHtml.replace("{ABENTEUER-RATING}", this._data.abenteuer != null ? this._data.cost : "unbekannt");
+            tempHtml = tempHtml.replace("{RELAX-RATING}", this._data.relax != null ? this._data.cost : "unbekannt");
+            tempHtml = tempHtml.replace("{NATURE-RATING}", this._data.nature != null ? this._data.cost : "unbekannt");
+            tempHtml = tempHtml.replace("{DANGER-RATING}", this._data.danger != null ? this._data.cost : "unbekannt");
             
             document.getElementById("header-div").innerHTML = "<h1>"+this._data.name+"</h1>";
             //tempHtml = tempHtml.replace("{NAME}", this._data.description);

@@ -8,6 +8,7 @@
 <div id="template-tile">
     <div class="main-area">
         <p>{DESCRIPTION}</p>
+        
     </div>
     <div class="extra_area">
         <ul class="list-group">
@@ -16,9 +17,12 @@
             <li class="list-group-item">Natur: {NATURE-RATING}</li>
             <li class="list-group-item">Schwierigkeitsgrad: {DANGER-RATING}</li>
         </ul>
-        <button type="button" class="btn btn-green" data-toggle="modal" data-target="#myModal">
-                Klingt nach Spaß!
-        </button>
+        <div class="lower-right">
+            <p class>Kosten: {KOSTEN}</p>
+            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#myModal">
+                    Klingt nach Spaß!
+            </button>
+        </div>
             
                 <!-- The Modal -->
         <div class="modal fade" id="myModal">

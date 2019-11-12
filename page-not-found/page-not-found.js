@@ -29,9 +29,14 @@ class PageNotFound {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        this._app.setPageTitle("Seite nicht gefunden", {isSubPage: true});
+        
+        let mainElement = pageDom.querySelector("main");
+        let templateElement = pageDom.querySelector("#template-tile");
+        mainElement.innerHTML += templateElement.innerHTML 
+        this._app.setPageTitle("404 Seite nicht gefunden");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
+        document.body.style.background = "red";
     }
 }

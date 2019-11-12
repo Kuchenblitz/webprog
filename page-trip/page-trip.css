@@ -1,6 +1,10 @@
 .btn-green{
     background: limegreen;
     color: white;
+
+}
+
+.lower-right{
     position: relative;
     margin-left: 75%;
     margin-top: 10%;
