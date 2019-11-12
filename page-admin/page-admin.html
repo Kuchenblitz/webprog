@@ -1,30 +1,65 @@
 <header>
     <h1>Adminbereich</h1>
 </header>
-    
+
 <main>
-    <form action="#/Admin" id="new_trip">
-        <div class="form-group">
-            <label for="trip_name">Trip Name</label>
-            <input type="text" class="form-control" name="trip_name" aria-describedby="emailHelp" placeholder="Enter trip name" required>
+    <div class="row">
+        <div class="column">
+            <h3>Eintrag hinzufügen</h3>
+            <form action="#/Admin" id="new_trip">
+                <div class="form-group">
+                    <label for="trip_name">Trip Name</label>
+                    <input type="text" class="form-control" name="trip_name" aria-describedby="emailHelp"
+                        placeholder="Enter trip name" required>
+                </div>
+                <div class="form-group">
+                    <label for="trip_description">Trip Description</label>
+                    <input type="text" class="form-control" name="trip_description" placeholder="Enter trip description"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="trip_id">Trip ID</label>
+                    <input type="number" class="form-control" name="trip_id" aria-describedby="emailHelp"
+                        placeholder="Enter trip ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="trip_href">Trip HREF</label>
+                    <input type="number" class="form-control" name="trip_href" placeholder="Enter Trip HREF" required>
+                </div>
+                <div class="form-group">
+                    <label for="trip_img_path">Trip Image Path</label>
+                    <input type="text" class="form-control" name="trip_img_path" placeholder="Enter Image Path"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="trip_abenteuer">Abenteuer</label>
+                    <input type="text" class="form-control" name="trip_abenteuer" placeholder="Enter Abenteuer-Rating"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="trip_relax">Entspannung</label>
+                    <input type="text" class="form-control" name="trip_relax" placeholder="Enter Entspannungs-Rating"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="trip_nature">Natur</label>
+                    <input type="text" class="form-control" name="trip_nature" placeholder="Enter Natur-Rating"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="trip_danger">Schwierigkeit</label>
+                    <input type="text" class="form-control" name="trip_danger" placeholder="Enter Schwierigkeitsgrad"
+                        required>
+                </div>
+                <button type="reset" class="btn btn-primary">Reset</button>
+                <button type="submit" class="btn btn-primary" id="submit_button">Submit</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="trip_description">Trip Description</label>
-            <input type="text" class="form-control" name="trip_description" placeholder="Enter trip description" required>
+        <div class="column">
+            <h3>Einträge Löschen</h3>
+            <div id="templates">
+                {NAME}
+            </div>
         </div>
-        <div class="form-group">
-            <label for="trip_name">Trip ID</label>
-            <input type="number" class="form-control" name="trip_id" aria-describedby="emailHelp" placeholder="Enter trip ID" required>
-        </div>
-        <div class="form-group">
-            <label for="trip_description">Trip HREF</label>
-            <input type="number" class="form-control" name="trip_href" placeholder="Enter Trip HREF" required>
-        </div>
-        <div class="form-group">
-            <label for="trip_description">Trip Image Path</label>
-            <input type="text" class="form-control" name="trip_img_path" placeholder="Enter Image Path" required>
-        </div>
-        <button type="reset" class="btn btn-primary">Reset</button>
-        <button type="submit" class="btn btn-primary" id="submit_button">Submit</button>
-    </form>
+    </div>
 </main>

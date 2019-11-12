@@ -73,7 +73,7 @@ class PageTrip {
             //tempHtml = tempHtml.replace("{NAME}", this._data.description);
             
             mainElement.innerHTML += tempHtml;
-            mainElement.innerHTML += "<button id='superbutton' class='btn btn-green'>test</button>";
+            mainElement.innerHTML += "<button id='superbutton' class='btn btn-green lower-right'>Klingt nach Spaß!</button>";
             this._app.setPageContent(pageDom.querySelector("main"));
             document.getElementById("superbutton").addEventListener("click", this._onTeilnahmeClicked);
             this._app.setPageTitle("Trip: "+this._data.name)

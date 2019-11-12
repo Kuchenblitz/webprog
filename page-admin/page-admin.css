@@ -1,0 +1,11 @@
+.row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 50%;
+  }
+
+  #new_trip{
+      margin-right: 50px;
+  }

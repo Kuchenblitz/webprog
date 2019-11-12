@@ -29,13 +29,13 @@ class PageAdmin {
         // Seite zur Anzeige bringen
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
-
-        this._app.setPageTitle("Startseite");
+        
+        this._app.setPageTitle("Admin");
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
         
-        
+        document.body.style.background = "transparent";
         let submit_button = document.getElementById('submit_button')
         submit_button.addEventListener("click", this._send_form);
     }
@@ -48,7 +48,11 @@ class PageAdmin {
              description: form.elements["trip_description"].value,
              href: form.elements["trip_href"].value,
              id: form.elements["trip_id"].value,
-             img_path: form.elements["trip_img_path"].value
+             img_path: form.elements["trip_img_path"].value,
+             abenteuer: form.elements["trip_abenteuer"].value,
+             relax: form.elements["trip_relax"].value,
+             nature: form.elements["trip_nature"].value,
+             danger: form.elements["trip_danger"].value
             })
             .then(function() {
                 alert("Document successfully written!");
