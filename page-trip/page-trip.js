@@ -41,11 +41,7 @@ class PageTrip {
         this._getData(pageDom);
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
-
-        console.log(pageDom.querySelector("#knopf"));
-        pageDom.querySelector("#knopf").onclick(this._onTeilnahmeClicked());
         
-    
     }
 
     /**
@@ -56,7 +52,6 @@ class PageTrip {
     _getData(pageDom) {
         let mainElement = pageDom.querySelector("main");
         let templateElement = pageDom.querySelector("#template-tile");
-        let headerElement = pageDom.querySelector("#header-div");
         
         //Abfrage der benötigten Daten für das asugewählte Element, sowie einsetzen dieser an den vorgesehenen Stellen
         let Event = db.collection('Events').doc(this.activityId);
@@ -65,14 +60,14 @@ class PageTrip {
             let html = templateElement.innerHTML;
            
             html = html.replace("{DESCRIPTION}", this._data.description);
-
-
             document.getElementById("header-div").innerHTML = "<h1>"+this._data.name+"</h1>";
             //html = html.replace("{NAME}", this._data.description);
 
             mainElement.innerHTML += html;
             this._app.setPageContent(pageDom.querySelector("main"));
             this._app.setPageTitle("Trip: "+this._data.name)
+
+
         });
     }
 
