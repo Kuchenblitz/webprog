@@ -68,26 +68,34 @@ class PageAdmin {
 
     _showEvents(pageDom){
         let deletingElement = pageDom.querySelector("#deleting");
-        console.log(deletingElement);
         const collection = db.collection('Events');
-
+        let dataList = [];
         //Iterate through alle Documents in Collection
         collection.onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 let data = doc.data();
-                deletingElement.innerHTML += "<li>" + data.name + "</li>";
+                dataList.push(data);
+                deletingElement.innerHTML += 
+                    '<li class="list-group-item">' + data.name + 
+                    '<button type="button" class="btn btn-danger delete_btn">delete</button></li>';
             });
+            let btns = document.getElementsByClassName("delete_btn");
+            for(let i = 0; i < btns.length; i++){
+                btns[i].addEventListener("click", function(){
+                    let eingabe = prompt("Um zu löschen, geben sie hier den Namen des Eintrags ein" +
+                    "\nVorsicht dies ist unwiderruflich!");
+                    if(eingabe == dataList[i].name){
+                        collection.doc(dataList[i].href).delete().then(function(){
+                            console.log("das hat geklappt!");
+                        }).catch(function(error){
+                            console.error("Das war wohl nichts");
+                        });
+                        alert("Item wird gelöscht");
+                    }else{
+                        alert("Item wird nicht gelöscht");
+                    }
+                });
+            }
         })
     }
-    
-    
-       
-    /**
-     * Hilfsmethode, welche den HTML-Code zur Darstellung der Kacheln auf
-     * der Startseite erzeugt.
-     *
-     * @param {HTMLElement} pageDom Wurzelelement der eingelesenen HTML-Datei
-     * mit den HTML-Templates dieser Seite.
-     */
-
 }
