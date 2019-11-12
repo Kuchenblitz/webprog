@@ -3,65 +3,28 @@
 </header>
     
 <main>
-    <form action="page-admin.js" id="new_trip">
+    <form action="#/Admin" id="new_trip">
         <div class="form-group">
             <label for="trip_name">Trip Name</label>
-            <input type="text" class="form-control" id="trip_name" aria-describedby="emailHelp" placeholder="Enter trip name">
+            <input type="text" class="form-control" name="trip_name" aria-describedby="emailHelp" placeholder="Enter trip name" required>
         </div>
         <div class="form-group">
             <label for="trip_description">Trip Description</label>
-            <input type="text" class="form-control" id="trip_description" placeholder="Enter trip description">
+            <input type="text" class="form-control" name="trip_description" placeholder="Enter trip description" required>
         </div>
         <div class="form-group">
             <label for="trip_name">Trip ID</label>
-            <input type="number" class="form-control" id="trip_id" aria-describedby="emailHelp" placeholder="Enter trip ID">
+            <input type="number" class="form-control" name="trip_id" aria-describedby="emailHelp" placeholder="Enter trip ID" required>
         </div>
         <div class="form-group">
             <label for="trip_description">Trip HREF</label>
-            <input type="number" class="form-control" id="trip_href" placeholder="Enter Trip HREF">
+            <input type="number" class="form-control" name="trip_href" placeholder="Enter Trip HREF" required>
         </div>
         <div class="form-group">
             <label for="trip_description">Trip Image Path</label>
-            <input type="text" class="form-control" id="trip_img_path" placeholder="Enter Image Path">
+            <input type="text" class="form-control" name="trip_img_path" placeholder="Enter Image Path" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-primary">Reset</button>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <!--/*
-        <table>
-            <tr>
-                <th>Key</th>
-                <th>Value</th>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td><input type="text" name="Name" id="name"></td>
-            </tr>
-            <tr>
-                <td>Beschreibung</td>
-                <td><input type="text" name="Beschreibung" id="description"></td>
-            </tr>
-            <tr>
-                <td>Bild</td>
-                <td><input type="text" name="Bild" id="img_path"></td>
-            </tr>
-            <tr>
-                <td>HREF</td>
-                <td><input type="text" name="HREF" id="href"></td>
-            </tr>
-            <tr>
-                <td><button type="submit" name="Trip hinzufügen" id="add_trip">Trip hinzufügen</button></td>
-                <td><button type="reset" name="Eingabe zurücksetzen" id="reset_form">Eingabe zurücksetzen</button></td>
-            </tr>
-        </table>
-        -->  
+        <button type="submit" class="btn btn-primary" id="submit_button">Submit</button>
     </form>
 </main>
