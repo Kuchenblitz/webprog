@@ -205,7 +205,7 @@
   */
  main {
      padding: var(--content-padding);
-     background: rgba(240,240,240, 0.9);
+     background: rgba(240,240,240, 0.6);
      flex: 1;
  }
  
