@@ -37,6 +37,6 @@ class PageNotFound {
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
-        document.body.style.background = "red";
+        document.body.style.background = "white";
     }
 }
