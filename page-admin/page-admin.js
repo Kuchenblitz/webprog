@@ -59,7 +59,8 @@ class PageAdmin {
              //img_path: form.elements["trip_img_path"].value,
             })
             .then(function() {
-                window.location.reload(true);
+                window.location.replace("#");
+                window.location.replace("#/Admin");
             })
             .catch(function(error) {
                 alert("Error writing document: ", error);
@@ -79,24 +80,38 @@ class PageAdmin {
                     '<li class="list-group-item">' + data.name + 
                     '<button type="button" class="btn btn-danger delete_btn">delete</button></li>';
             });
-            let btns = document.getElementsByClassName("delete_btn");
-            for(let i = 0; i < btns.length; i++){
-                btns[i].addEventListener("click", function(){
-                    let eingabe = prompt("Um zu löschen, geben sie hier den Namen des Eintrags ein" +
-                    "\nVorsicht dies ist unwiderruflich!");
-                    if(eingabe == dataList[i].name){
-                        collection.doc(dataList[i].href).delete().then(function(){
-                            console.log("das hat geklappt!");
-                        }).catch(function(error){
-                            console.error("Das war wohl nichts");
-                        });
-                        alert("Item wurde gelöscht");
-                    }else{
-                        alert("Item wird nicht gelöscht");
-                    }
-                                      
-                });
-            }
+            this._createButtons(pageDom, dataList, collection);
         })
+    }
+
+
+    /**
+     * Gibt jedem Löschen Knopf die funktionalität sein spezielles item zu löschen
+     * 
+     * @param {*} pageDom 
+     * @param {*} dataList 
+     * @param {*} collection 
+     */
+    _createButtons(pageDom, dataList, collection){
+        let btns = document.getElementsByClassName("delete_btn");
+        for(let i = 0; i < btns.length; i++){
+            btns[i].addEventListener("click", function(){
+                let eingabe = prompt("Um zu löschen, geben sie hier den Namen des Eintrags ein" +
+                "\nVorsicht dies ist unwiderruflich!");
+                if(eingabe == dataList[i].name){
+                    collection.doc(dataList[i].href).delete().then(function(){
+                        console.log("das hat geklappt!");
+                    }).catch(function(error){
+                        console.error("Das war wohl nichts");
+                    });
+                    alert("Item wurde gelöscht");
+                }else{
+                    alert("Item wird nicht gelöscht");
+                }
+                //Seite muss umständlich neu geladen werden, um seltsames Listenverhalten zu verhindern
+                window.location.replace("#");
+                window.location.replace("#/Admin");
+            });
+        }
     }
 }
