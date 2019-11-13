@@ -33,7 +33,7 @@ class PageNotFound {
         let mainElement = pageDom.querySelector("main");
         let templateElement = pageDom.querySelector("#template-tile");
         mainElement.innerHTML += templateElement.innerHTML 
-        this._app.setPageTitle("404 Seite nicht gefunden");
+        this._app.setPageTitle("404 Seite nicht gefunden", {isSubPage:true});
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));

@@ -131,6 +131,10 @@
      display: inline-block;
  }
  
+ nav{
+    background: rgba(50,50,200,0.8);
+ }
+
  /* Kopfinhalt der Seite */
  header .content {
      padding: var(--content-padding);

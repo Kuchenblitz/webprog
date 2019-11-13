@@ -94,7 +94,7 @@ class PageTrip {
                     });
                 }
             });
-            this._app.setPageTitle("Trip: "+this._data.name)
+            this._app.setPageTitle("Trip: "+this._data.name, {isSubPage:true})
             
             //Hintergrund dem Event anpassen
             document.body.style.background = "url(" + this._data.img_path + ")";

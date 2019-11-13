@@ -32,7 +32,7 @@ class PageAdmin {
 
         this._showEvents(pageDom);
 
-        this._app.setPageTitle("Admin");
+        this._app.setPageTitle("Admin", {isSubPage:true});
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));

@@ -6,12 +6,11 @@
 
 .lower-right{
     position: relative;
-    margin-left: 75%;
+    margin-left: 60%;
 }
 
 .rounded{
     background: rgba(255,255,255,0.65);
     padding: 15px;
-    margin-right: 500px;
 }
 

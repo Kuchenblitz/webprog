@@ -31,7 +31,6 @@ class App {
         this._title = title;
         this._pages = pages;
         this._currentPageObject = null;
-
     }
 
     /**
@@ -41,60 +40,16 @@ class App {
      */
     run() {
         // Globale Event Listener registrieren
-        document.querySelector("header nav .toggle-menu a").addEventListener("click", this._toggleHamburgerMenu);
         document.querySelector("header nav .go-back a").addEventListener("click", () => window.history.back());
-
         // Single Page Router starten und die erste Seite aufrufen
         window.addEventListener("hashchange", () => this._handleRouting());
         this._handleRouting();
     }
 
-    /**
-     * Hilfsmethode zum Ein- und Ausblenden des Hamburger-Menüs aus kleinen
-     * Bildschirmen. Die Methode wird durch einen Event Handler bei jedem
-     * Klick auf das Hamburger-Icon aufgerufen.
-     *
-     * @param {DOMEvent} event Abgefangenes Click-Event
-     */
-    _toggleHamburgerMenu(event) {
-        // Hamburger-Menu ein- oder ausblenden
-        let menu = document.querySelector("header nav .menu-right");
-        if (!menu) return;
-
-        if (menu.classList.contains("small-screen-hidden")) {
-            menu.classList.remove("small-screen-hidden");
-        } else {
-            menu.classList.add("small-screen-hidden");
-        }
-
-        // Weitere Behandlung des Click-Events unterbinden, da wir hier keine
-        // neue Seite anfordern wollen.
-        if (event) {
-            event.preventDefault();
-        }
-    }
 
     /**
-     * Diese Methode wertet die aktuelle URL aus und sorgt dafür, dass die
-     * dazu passende App-Seite geladen und angezeigt wird. Der Einfachheit
-     * halber wird eine sog. Hash-URL verwendet, bei der die aufzurufende
-     * Seite nach einem #-Zeichen stehen muss. Zum Beispiel:
-     *
-     *   http://localhost:8080/index.html#/Detail/1234
-     *
-     * Hier beschreibt "/Detail/1234" den Teil der URL mit der darzustellenden
-     * Seite. Der Vorteil dieser Technik besteht darin, dass ein Link mit einer
-     * solchen URL keine neue Seite vom Server lädt, wenn sich der vordere Teil
-     * der URL (alles vor dem #-Zeichen) nicht verändert. Stattdessen wird
-     * ein "hashchange"-Ereignis generiert, auf das wir hier reagieren können,
-     * um die sichtbare Unterseite der App auszutauschen.
-     *
-     * Auf Basis der History-API und dem "popstate"-Ereignis lässt sich ein
-     * noch ausgefeilterer Single Page Router entwickeln, der bei Bedarf auch
-     * ohne das #-Zeichen in der URL auskommt. Dies würde jedoch sowohl mehr
-     * Quellcode in JavaScript sowie eine spezielle Server-Konfiguration
-     * erfordern, so dass der Server bei jeder URL immer die gleiche HTML-Seite
-     * an den Browser schickt. Diesen Aufwand sparen wir uns deshalb hier. :-)
+     * Router Methode
+     * sorgt dafür, dass die richtige Seite geöffnet wird
      */
     _handleRouting() {
         let pageUrl = location.hash.slice(1);
@@ -116,24 +71,7 @@ class App {
     }
 
     /**
-     * Angezeigten Titel der App-Seite setzen. Diese Methode muss von den
-     * Page-Klassen aufgerufen werden, um den sichtbaren Titel einer Seite
-     * festzulegen. Der Titel wird dann in der Titelzeile des Browsers sowie
-     * im Kopfbereich der App angezeigt.
-     *
-     * Über das optionale Konfigurationsobjekt kann gesteuert werden, ob
-     * neben dem Seitentitel ein Zurück-Button eingeblendet wird:
-     *
-     *      {
-     *          isSubPage: true,
-     *      }
-     *
-     * Der Zurück-Button wird nur eingeblendet, wenn isSubPage = true gesetzt
-     * wird. Die Idee dahinter ist, dass eine App meistens eine zentrale
-     * Startseite hat, von der aus in verschiedene Unterseiten verzweigt werden
-     * kann. Jede von der Startseite aus direkt oder indirekt aufgerufene Seite
-     * ist daher eine Unterseite mit Zurück-Button. Die Startseite hingegen als
-     * Mutter aller Seiten besitzt keinen Zurück-Button.
+     * setzt Titel der Seite und prüft ob es sich um die Startseite, oder eine Unterseite handelt um den bei Unterseiten den Link einzublenden
      *
      * @param {String} title   Anzuzeigender Titel der App-Seite
      * @param {Object} options Detailoptionen zur Steuerung der Anzeige
