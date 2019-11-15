@@ -1,13 +1,14 @@
 .btn-green{
     background: limegreen;
     color: white;
-
+    margin-left: 10px;
 }
 
 .lower-right{
     position: relative;
     margin-left: 60%;
 }
+
 
 .rounded{
     background: rgba(255,255,255,0.65);

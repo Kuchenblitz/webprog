@@ -164,20 +164,3 @@ class App {
     
 
 }
-
-/** Firebase Shenanigans 
-
-document.addEventListener("DOMContentLoaded", event => {
-    console.log("Event is executed");
-    const app = firebase.app();
-
-    const db = firebase.firestore();
-
-    const myPost = db.collection('Events').doc('01');
-
-    myPost.get()
-          .then(doc => {
-              const data = doc.data();
-              console.log( data.name)
-          })
-});*/

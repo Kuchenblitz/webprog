@@ -224,3 +224,9 @@
      color: red;
  }
  
+ footer{
+     border-top-style: ridge;
+     padding: 5px;
+     font-size: 10px;
+     background: rgba(240,240,240, 0.6);
+ }
