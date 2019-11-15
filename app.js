@@ -41,6 +41,7 @@ class App {
     run() {
         // Globale Event Listener registrieren
         document.querySelector("header nav .go-back a").addEventListener("click", () => window.history.back());
+        document.querySelector("footer .go-back a").addEventListener("click", () => window.history.back());
         // Single Page Router starten und die erste Seite aufrufen
         window.addEventListener("hashchange", () => this._handleRouting());
         this._handleRouting();
@@ -161,6 +162,6 @@ class App {
     }
 
 
-    
+
 
 }
