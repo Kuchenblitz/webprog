@@ -81,10 +81,9 @@ class PageTrip {
             document.getElementById("teilnehmen_button").addEventListener("click", function(){
                 let teilnehmer = prompt("Please enter your name");
                 if(teilnehmer != null){
-                    db.collection("Teilnehmer").doc(teilnehmer).set({
+                    db.collection("Teilnehmer").doc().set({
                         name: teilnehmer,
                         AktivitätsId: id,
-                        teilnehmerId: "13"
                     })
                     .then(function() {
                         console.log("Document successfully written!");
