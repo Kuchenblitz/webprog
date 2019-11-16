@@ -10,7 +10,7 @@
     padding: 0.5em;
     margin: 0.5em;
 
-    transition: transform 0.5s, background 0.5s;
+    transition: transform 0.5s;
     transform: scale(1);
 }
 
@@ -30,6 +30,6 @@
 
 .tile:hover {
     background: white;
-    transform: scale(1.01) rotate(0.5deg);
+    transform: scale(1.05) skew(1.30deg);
     cursor: pointer;
 }
