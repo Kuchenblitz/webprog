@@ -27,7 +27,7 @@ class PageOverview {
             console.error("Fehler beim Laden des HTML/CSS-Inhalts");
             return;
         }
-        
+
         // Seite zur Anzeige bringen
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
@@ -39,7 +39,10 @@ class PageOverview {
         this._app.setPageHeader(pageDom.querySelector("header"));
         document.body.style.background = "transparent";
         console.log(window.location.href);
-        
+
+        /** deaktiviert footer */
+        document.querySelector("footer").style.display = 'none';
+
     }
 
 
@@ -48,7 +51,7 @@ class PageOverview {
         let templateElement = pageDom.querySelector("#template-tile");
 
         const collection = db.collection('Events');
-        
+
         // Iterate through all the Documents in the Collection
         collection.onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -61,12 +64,12 @@ class PageOverview {
                 html = html.replace("{ALT}", data.description);
                 let mainElement = pageDom.querySelector("main");
                 mainElement.innerHTML += html;
-                
+
             });
             this._app.setPageContent(pageDom.querySelector("main"));
         })
     }
-       
+
     /**
      * Hilfsmethode, welche den HTML-Code zur Darstellung der Kacheln auf
      * der Startseite erzeugt.

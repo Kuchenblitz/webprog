@@ -16,7 +16,7 @@ class PageAdmin {
         // Anzuzeigenden Seiteninhalt nachladen
         let html = await fetch("page-admin/page-admin.html");
         let css = await fetch("page-admin/page-admin.css");
-        
+
 
         if (html.ok && css.ok) {
             html = await html.text();
@@ -25,7 +25,7 @@ class PageAdmin {
             console.error("Fehler beim Laden des HTML/CSS-Inhalts");
             return;
         }
-        
+
         // Seite zur Anzeige bringen
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
@@ -36,16 +36,19 @@ class PageAdmin {
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
-        
+
         document.body.style.background = "transparent";
 
         //Einfügen der Knöpfe zum bestätigen und verwerfen (Muss hier gemacht werden, da diese Knöpfe aufgrund des dynamischen Aufbaus ansonsten nicht gefunden werdem von getElementById())
-        document.getElementById("reset_and_submit").innerHTML += 
+        document.getElementById("reset_and_submit").innerHTML +=
         '<button type="reset" class="btn btn-primary">Reset</button>' +
         '<button type="submit" class="btn btn-primary" id="submit_button">Submit</button>'
 
         let submit_button = document.getElementById('submit_button')
         submit_button.addEventListener("click", this._send_form);
+
+        /** aktiviert footer */
+        document.querySelector("footer").style.display = 'block';
     }
 
     _send_form(){
@@ -82,8 +85,8 @@ class PageAdmin {
             querySnapshot.forEach((doc) => {
                 let data = doc.data();
                 dataList.push(data);
-                deletingElement.innerHTML += 
-                    '<li class="list-group-item">' + data.name + 
+                deletingElement.innerHTML +=
+                    '<li class="list-group-item">' + data.name +
                     '<button type="button" class="btn btn-danger delete_btn">delete</button></li>';
             });
             this._createButtons(pageDom, dataList, collection);
@@ -93,10 +96,10 @@ class PageAdmin {
 
     /**
      * Gibt jedem Löschen Knopf die funktionalität sein spezielles item zu löschen
-     * 
-     * @param {*} pageDom 
-     * @param {*} dataList 
-     * @param {*} collection 
+     *
+     * @param {*} pageDom
+     * @param {*} dataList
+     * @param {*} collection
      */
     _createButtons(pageDom, dataList, collection){
         let btns = document.getElementsByClassName("delete_btn");

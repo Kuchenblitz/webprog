@@ -29,14 +29,17 @@ class PageNotFound {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        
+
         let mainElement = pageDom.querySelector("main");
         let templateElement = pageDom.querySelector("#template-tile");
-        mainElement.innerHTML += templateElement.innerHTML 
+        mainElement.innerHTML += templateElement.innerHTML
         this._app.setPageTitle("404 Seite nicht gefunden", {isSubPage:true});
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
         document.body.style.background = "white";
+
+        /** aktiviert footer */
+        document.querySelector("footer").style.display = 'block';
     }
 }

@@ -16,7 +16,9 @@ class PageTrip {
 
         //Bestimmung der Id des anzuzeigenden Elements
         let pageUrl = window.location.href;
+        console.log(pageUrl);
         let res = pageUrl.split("/");
+        console.log(res);
         this.activityId = res[res.length-1];
 
         // Anzuzeigenden Seiteninhalt nachladen
@@ -38,6 +40,9 @@ class PageTrip {
         this._app.setPageCss(css);
         this._getData(pageDom);
         this._app.setPageHeader(pageDom.querySelector("header"));
+
+        /** aktiviert footer */
+        document.querySelector("footer").style.display = 'block';
     }
 
     /**
@@ -98,18 +103,39 @@ class PageTrip {
             document.body.style.background = "url(" + this._data.img_path + ")";
             document.body.style.backgroundSize = "cover";
 
-
+            // generiert Balken
             let attributes = document.getElementsByClassName("attribute");
               for (let i = 0; i < attributes.length; i++) {
                 switch (parseInt(attributes[i].innerText)) {
                   case 1:
                     attributes[i].style.width = "10%";
                     break;
+                  case 2:
+                    attributes[i].style.width = "20%";
+                    break;
+                  case 3:
+                    attributes[i].style.width = "30%";
+                    break;
+                  case 4:
+                    attributes[i].style.width = "40%";
+                    break;
+                  case 5:
+                    attributes[i].style.width = "50%";
+                    break;
+                  case 6:
+                    attributes[i].style.width = "60%";
+                    break;
                   case 7:
                     attributes[i].style.width = "70%";
                     break;
                   case 8:
                     attributes[i].style.width = "80%";
+                    break;
+                  case 9:
+                    attributes[i].style.width = "90%";
+                    break;
+                  case 10:
+                    attributes[i].style.width = "100%";
                     break;
                   default:
                     attributes[i].style.width = "0%";
