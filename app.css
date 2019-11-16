@@ -5,7 +5,6 @@
  * betreffen. Also solche Dinge wie Schriftart und Größe, Farben sowie das
  * Layout im Allgemeinen betreffend.
  */
- @import url('https://fonts.googleapis.com/css?family=Rubik');
 
  /*
   * ALLGEMEINES
@@ -19,7 +18,7 @@
  }
 
  html {
-     font-family: "Rubik", sans-serif;
+     font-family: "Arial", sans-serif;
      font-size: 14pt;
      line-height: 1.6;
      background-color: black;
@@ -74,17 +73,10 @@
      color: var(--text-color);
  }
 
- header nav i {
-     color: var(--icon-color);
- }
-
  header nav .page-name {
      font-weight: bold;
  }
 
- header nav .logo {
-     display: none;
- }
 
  header nav ul {
      list-style: none;
@@ -172,33 +164,8 @@
  }
 
  /* Anpassung an große Bildschirme */
- @media (max-width: 40em) {
-     .small-screen-hidden {
-         display: none;
-     }
- }
 
  @media (min-width: 40em) {
-     .small-screen-only {
-         display: none !important;
-     }
-
-     .logo {
-         display: inline-block !important;
-
-         height: 2em;
-         padding-right: var(--content-padding);
-     }
-
-     header nav,
-     header nav .menu-right {
-         display: flex;
-     }
-
-     header nav .menu-right li {
-         padding-left: var(--content-padding);
-     }
-
      header nav .menu-left {
          flex: 1;
      }
