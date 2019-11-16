@@ -39,7 +39,7 @@ class PageAdmin {
         
         document.body.style.background = "transparent";
 
-        //Einfügen der Knöpfe zum bestätigen und verwerfen (Muss hier gemacht werden, da aufgrund des dynamischen Aufbaus er ansonsten nicht gefunden wird von getElementById())
+        //Einfügen der Knöpfe zum bestätigen und verwerfen (Muss hier gemacht werden, da diese Knöpfe aufgrund des dynamischen Aufbaus ansonsten nicht gefunden werdem von getElementById())
         document.getElementById("reset_and_submit").innerHTML += 
         '<button type="reset" class="btn btn-primary">Reset</button>' +
         '<button type="submit" class="btn btn-primary" id="submit_button">Submit</button>'
