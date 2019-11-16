@@ -10,20 +10,33 @@
     <div class="main-area">
        <p>{DESCRIPTION}</p>
     </div>
-    <div class="extra_area">
-        <ul class="list-unstyled rounded">
-            <h5>
-                <li>Abenteuer: {ABENTEUER-RATING}</li>
-                <li>Entspannung: {RELAX-RATING}</li>
-                <li>Natur: {NATURE-RATING}</li>
-                <li>Schwierigkeitsgrad: {DANGER-RATING}</li>
-            </h5>
-        </ul>
-        <p id="button_here" class="lower-right">Kosten: {KOSTEN}</p>   
-      
-    </div>         
+
+    <p>Abenteuer:</p>
+<div class="container">
+  <div class="skills">{ABENTEUER-RATING}</div>
+</div>
+
+<p>Entspannung:</p>
+<div class="container">
+  <div class="skills">{RELAX-RATING}</div>
+</div>
+
+<p>Natur:</p>
+<div class="container">
+  <div class="skills">{NATURE-RATING}</div>
+</div>
+
+<p>Schwierigkeitsgrad:</p>
+<div class="container">
+  <div class="skills">{DANGER-RATING}</div>
+</div>
+
+    <div class="extra_area" style="margin: 20px">
+        <p id="button_here" class="lower-right">Kosten: {KOSTEN}</p>
+
+    </div>
     <div>
             Für mehr Infos rufen sie {NUMMER} an
     </div>
-    
+
 </div>
