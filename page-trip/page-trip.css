@@ -16,15 +16,14 @@
 }
 
 .container{
-  width: 100%; /* Full width */
-background-color: #ddd; /* Grey background */
+    width: 100%; /* Full width */
+    background-color: rgba(	155,155,155,0.7); /* Grey background */
 }
 
-.skills{
-  text-align: right; /* Right-align text */
-padding-top: 10px; /* Add top padding */
-padding-bottom: 10px; /* Add bottom padding */
-color: white; /* White text color */
-width: 90%;
-background-color: #ffba00;
+.attribute{
+    text-align: center; /* Right-align text */
+    padding-top: 10px; /* Add top padding */
+    padding-bottom: 10px; /* Add bottom padding */
+    color: white; /* White text color */
+    background-color: #ffba00;
 }

@@ -11,7 +11,7 @@ class PageTrip {
         this._data = null;
     }
 
-    
+
     async show() {
 
         //Bestimmung der Id des anzuzeigenden Elements
@@ -34,29 +34,28 @@ class PageTrip {
         // Seite zur Anzeige bringen
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
-        
-        this._getData(pageDom);
-        this._app.setPageCss(css);
-        this._app.setPageHeader(pageDom.querySelector("header"));
 
+        this._app.setPageCss(css);
+        this._getData(pageDom);
+        this._app.setPageHeader(pageDom.querySelector("header"));
     }
-    
+
     /**
-     * 
-     * Funktion, die die benötigten Daten aus der Datenbank holt und in den DOM-Baum anhängt 
+     *
+     * Funktion, die die benötigten Daten aus der Datenbank holt und in den DOM-Baum anhängt
      * @param {*} pageDom der div-Container, der die Elemente beinhalten soll
      */
     _getData(pageDom) {
         let mainElement = pageDom.querySelector("main");
         let templateElement = pageDom.querySelector("#template-tile");
-        
+
         //Abfrage der benötigten Daten für das asugewählte Element, sowie einsetzen dieser an den vorgesehenen Stellen
         let id = this.activityId;
         let Event = db.collection('Events').doc(id);
         Event.get().then(doc => {
             this._data = doc.data();
             let tempHtml = templateElement.innerHTML;
-            
+
             tempHtml = tempHtml.replace("{DESCRIPTION}", this._data.description);
             tempHtml = tempHtml.replace("{KOSTEN}", this._data.cost != null ? this._data.cost : "unbekannt");
             if(this._data.tel != null){
@@ -69,10 +68,10 @@ class PageTrip {
             tempHtml = tempHtml.replace("{RELAX-RATING}", this._data.relax != null ? this._data.relax : "unbekannt");
             tempHtml = tempHtml.replace("{NATURE-RATING}", this._data.nature != null ? this._data.nature : "unbekannt");
             tempHtml = tempHtml.replace("{DANGER-RATING}", this._data.difficulty != null ? this._data.difficulty : "unbekannt");
-            
+
             document.getElementById("header-div").innerHTML = "<h1>"+this._data.name+"</h1>";
             //tempHtml = tempHtml.replace("{NAME}", this._data.description);
-            
+
             mainElement.innerHTML += tempHtml;
             this._app.setPageContent(pageDom.querySelector("main"));
 
@@ -94,15 +93,33 @@ class PageTrip {
                 }
             });
             this._app.setPageTitle("Trip: "+this._data.name, {isSubPage:true})
-            
+
             //Hintergrund dem Event anpassen
             document.body.style.background = "url(" + this._data.img_path + ")";
             document.body.style.backgroundSize = "cover";
+
+
+            let attributes = document.getElementsByClassName("attribute");
+              for (let i = 0; i < attributes.length; i++) {
+                switch (parseInt(attributes[i].innerText)) {
+                  case 1:
+                    attributes[i].style.width = "10%";
+                    break;
+                  case 7:
+                    attributes[i].style.width = "70%";
+                    break;
+                  case 8:
+                    attributes[i].style.width = "80%";
+                    break;
+                  default:
+                    attributes[i].style.width = "0%";
+
+                }
+              }
         });
     }
-    
+
 
 
 
 }
-
