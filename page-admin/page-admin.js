@@ -50,18 +50,18 @@ class PageAdmin {
 
     _send_form(){
         let form = document.getElementById("new_trip");
+        //aus irgendeinem Grund spackt es hier
         db.collection("Events").doc(form.elements["trip_href"].value).set({
              name: form.elements["trip_name"].value,
              description: form.elements["trip_description"].value,
              href: form.elements["trip_href"].value,
              id: form.elements["trip_id"].value,
              img_path: form.elements["trip_img_path"].value,
-             //aus irgendeinem Grund spackt es hier
-             /*adventure: form.elements["trip_adventure"].value,
+             adventure: form.elements["trip_adventure"].value,
              relax: form.elements["trip_relax"].value,
              nature: form.elements["trip_nature"].value,
              difficulty: form.elements["trip_difficulty"].value,
-             cost: form.elements["trip.cost"].value,*/
+             cost: form.elements["trip_cost"].value,
             })
             .then(function() {
                 console.log("Document succesfully written!")
@@ -105,7 +105,8 @@ class PageAdmin {
                 let eingabe = prompt("Um zu löschen, geben sie hier den Namen des Eintrags ein" +
                 "\nVorsicht dies ist unwiderruflich!");
                 if(eingabe == dataList[i].name){
-                    collection.doc(dataList[i].href).delete().then(function(){
+                    collection.doc(dataList[i].href).delete()
+                    .then(function(){
                         console.log("succesfully deleted item");
                     }).catch(function(error){
                         console.error("error deleting item");
