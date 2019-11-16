@@ -65,10 +65,10 @@ class PageTrip {
                 tempHtml = tempHtml.replace("Für mehr Infos rufen sie {NUMMER} an", "");
             }
 
-            tempHtml = tempHtml.replace("{ABENTEUER-RATING}", this._data.abenteuer != null ? this._data.abenteuer : "unbekannt");
+            tempHtml = tempHtml.replace("{ABENTEUER-RATING}", this._data.adventure != null ? this._data.adventure : "unbekannt");
             tempHtml = tempHtml.replace("{RELAX-RATING}", this._data.relax != null ? this._data.relax : "unbekannt");
             tempHtml = tempHtml.replace("{NATURE-RATING}", this._data.nature != null ? this._data.nature : "unbekannt");
-            tempHtml = tempHtml.replace("{DANGER-RATING}", this._data.danger != null ? this._data.danger : "unbekannt");
+            tempHtml = tempHtml.replace("{DANGER-RATING}", this._data.difficulty != null ? this._data.difficulty : "unbekannt");
             
             document.getElementById("header-div").innerHTML = "<h1>"+this._data.name+"</h1>";
             //tempHtml = tempHtml.replace("{NAME}", this._data.description);
