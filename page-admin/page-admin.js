@@ -91,15 +91,20 @@ class PageAdmin {
             };
         }
 
-        db.collection("Events").doc(form.elements["trip_href"].value).set(data)
-            .then(function () {
-                console.log("Document succesfully written!")
-                window.location.replace("#");
-                window.location.replace("#/Admin");
-            })
-            .catch(function (error) {
-                alert("Error writing document: ", error);
-            });
+        try{
+            db.collection("Events").doc(form.elements["trip_href"].value).set(data)
+                .then(function () {
+                    console.log("Document succesfully written!")
+                    window.location.replace("#");
+                    window.location.replace("#/Admin");
+                })
+                .catch(function (error) {
+                    alert("Error writing document: ", error);
+                });
+            }
+        catch{
+            console.error("500 Internal Server Error!")
+        }
     }
 
     _showEvents(pageDom) {
