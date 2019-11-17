@@ -10,7 +10,7 @@ class PageAdmin {
     }
 
     /**
-     * Seite anzeigen. Wird von der App-Klasse aufgerufen.
+     * Diese Funktion dient dazu die Seite anzuzeigen. Wird von der App-Klasse aufgerufen.
      */
     async show() {
         // Anzuzeigenden Seiteninhalt nachladen
@@ -42,7 +42,7 @@ class PageAdmin {
         //Einfügen der Knöpfe zum bestätigen und verwerfen (Muss hier gemacht werden, da diese Knöpfe aufgrund des dynamischen Aufbaus ansonsten nicht gefunden werdem von getElementById())
         document.getElementById("reset_and_submit").innerHTML +=
             '<button type="reset" class="btn btn-primary">Reset</button>' +
-            '<button type="submit" class="btn btn-primary" id="submit_button">Submit</button>'
+            '<button type="btn" class="btn btn-primary" id="submit_button">Submit</button>'
 
         let submit_button = document.getElementById('submit_button')
         submit_button.addEventListener("click", this._send_form);
@@ -51,21 +51,46 @@ class PageAdmin {
         document.querySelector("footer").style.display = 'block';
     }
 
+    /**
+     * Diese Funktion soll dafür sorgen, dass alle Eingaben in die Datenbank übernommen werden
+     * funktioniert manchmal nicht, dann muss nochmal versucht werden
+     * fix nicht gefunden
+     */
     _send_form() {
         let form = document.getElementById("new_trip");
         //aus irgendeinem Grund spackt es hier
-        let data = {
-            name: form.elements["trip_name"].value,
-            description: form.elements["trip_description"].value,
-            href: form.elements["trip_href"].value,
-            id: form.elements["trip_id"].value,
-            img_path: form.elements["trip_img_path"].value,
-            adventure: form.elements["trip_adventure"].value,
-            relax: form.elements["trip_relax"].value,
-            nature: form.elements["trip_nature"].value,
-            difficulty: form.elements["trip_difficulty"].value,
-            cost: form.elements["trip_cost"].value,
-        };
+        let data;
+        if(form.elements["trip_number"].value == ""){
+            data = {
+                name: form.elements["trip_name"].value,
+                description: form.elements["trip_description"].value,
+                href: form.elements["trip_href"].value,
+                id: form.elements["trip_id"].value,
+                img_path: form.elements["trip_img_path"].value,
+                adventure: form.elements["trip_adventure"].value,
+                relax: form.elements["trip_relax"].value,
+                nature: form.elements["trip_nature"].value,
+                difficulty: form.elements["trip_difficulty"].value,
+                cost: form.elements["trip_cost"].value,
+                number: form.elements["trip_number"].value,
+            }
+        }
+        else{
+            data = {
+                name: form.elements["trip_name"].value,
+                description: form.elements["trip_description"].value,
+                href: form.elements["trip_href"].value,
+                id: form.elements["trip_id"].value,
+                img_path: form.elements["trip_img_path"].value,
+                adventure: form.elements["trip_adventure"].value,
+                relax: form.elements["trip_relax"].value,
+                nature: form.elements["trip_nature"].value,
+                difficulty: form.elements["trip_difficulty"].value,
+                cost: form.elements["trip_cost"].value,
+                tel: form.elements["trip_number"].value,
+            };
+        }
+
         db.collection("Events").doc(form.elements["trip_href"].value).set(data)
             .then(function () {
                 console.log("Document succesfully written!")
