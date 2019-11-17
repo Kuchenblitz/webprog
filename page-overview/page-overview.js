@@ -46,7 +46,7 @@ class PageOverview {
     }
 
 
-    _render_activities(pageDom){
+    _render_activities(pageDom) {
         let mainElement = pageDom.querySelector("main");
         let templateElement = pageDom.querySelector("#template-tile");
 
