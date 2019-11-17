@@ -10,7 +10,7 @@ class PageAdmin {
     }
 
     /**
-     * Seite anzeigen. Wird von der App-Klasse aufgerufen.
+     * Diese Funktion dient dazu die Seite anzuzeigen. Wird von der App-Klasse aufgerufen.
      */
     async show() {
         // Anzuzeigenden Seiteninhalt nachladen
@@ -51,6 +51,11 @@ class PageAdmin {
         document.querySelector("footer").style.display = 'block';
     }
 
+    /**
+     * Diese Funktion soll dafür sorgen, dass alle Eingaben in die Datenbank übernommen werden
+     * funktioniert manchmal nicht, dann muss nochmal versucht werden
+     * fix nicht gefunden
+     */
     _send_form() {
         let form = document.getElementById("new_trip");
         //aus irgendeinem Grund spackt es hier
