@@ -6,7 +6,8 @@
  * Diese Klasse ist sozusagen die Hauptklasse unserer Anwendung. Sie kümmert
  * sich darum, den richtigen Inhalt zu finden und einzublenden, den der
  * Anwender gerade sehen will, wobei der Inhalt selbst hierfür von anderen
- * Klassen bereitgestellt wird.
+ * Klassen bereitgestellt wird. 
+ * 
  */
 class App {
     /**
